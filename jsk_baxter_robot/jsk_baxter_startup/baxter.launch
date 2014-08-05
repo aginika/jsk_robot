@@ -3,7 +3,7 @@
   <arg name="launch_joint_trajectory" value="true"/>
   <arg name="launch_openni" value="true"/>
   <arg name="launch_voice_echo" value="true"/>
-  <arg name="launch_moveit" value="true"/>
+  <arg name="launch_moveit" value="false"/>
   <arg name="launch_teleop" value="true"/>
   <arg name="start_openni" value="true"/>
 
