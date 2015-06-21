@@ -78,7 +78,7 @@
 
   <!-- Prosilica camera -->
   <!-- Camera isn't robust to dropped links, so it should respawn -->
-  <arg name="no-prosilica" default="false" />
+  <arg name="no-prosilica" default="true" />
   <group unless="$(arg no-prosilica)" >
     <node name="prosilica_driver" pkg="prosilica_camera"
           type="prosilica_node" respawn="true" output="screen">
@@ -91,14 +91,14 @@
   </group>
 
   <!-- Stereo Camera and synchronization -->
-  <include file="$(find pr2_bringup)/config/dualstereo_camera.launch"/>
+  <include file="$(find pr2_bringup)/config/dualstereo_camera.launch" if="false"/>
 
   <!-- Forearm Camera -->
-  <include file="$(find pr2_bringup)/config/r_forearm_cam.launch" />
-  <include file="$(find pr2_bringup)/config/l_forearm_cam.launch" />
+  <include file="$(find pr2_bringup)/config/r_forearm_cam.launch" if="false"/>
+  <include file="$(find pr2_bringup)/config/l_forearm_cam.launch" if="false"/>
 
   <!-- Sound -->
-  <node pkg="sound_play" type="soundplay_node.py" machine="c1" name="sound_play" /> 
+  <node pkg="sound_play" type="soundplay_node.py" machine="c1" name="sound_play" if="false"/> 
 
   <!-- Runtime Diagnostics and Motor Trace Logging -->
   <node name="runtime_logger" machine="c1"  pkg="rosbag" type="record"
@@ -152,7 +152,7 @@
   </node>
 
   <!-- Buffer Server -->
-  <node pkg="tf2_ros" type="buffer_server" name="tf2_buffer_server" output="screen">
+  <node pkg="tf2_ros" type="buffer_server" name="tf2_buffer_server" output="screen" if="false">
     <param name="buffer_size" value="120.0"/>
   </node>
 
@@ -161,7 +161,7 @@
   </node>
 
   <!-- logging database -->
-  <include file="$(find jsk_robot_startup)/lifelog/mongodb.launch">
+  <include file="$(find jsk_robot_startup)/lifelog/mongodb.launch" if="false">
     <arg name="db_path" value="/var/lib/robot/mongodb_store" />
     <arg name="port" value="62345" />
     <arg name="repl_set_mode" value="false" />
