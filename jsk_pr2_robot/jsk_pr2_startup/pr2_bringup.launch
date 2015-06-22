@@ -98,7 +98,7 @@
   <include file="$(find pr2_bringup)/config/l_forearm_cam.launch" if="false"/>
 
   <!-- Sound -->
-  <node pkg="sound_play" type="soundplay_node.py" machine="c1" name="sound_play" if="false"/> 
+  <node pkg="sound_play" type="soundplay_node.py" machine="c1" name="sound_play" if="true"/> 
 
   <!-- Runtime Diagnostics and Motor Trace Logging -->
   <node name="runtime_logger" machine="c1"  pkg="rosbag" type="record"

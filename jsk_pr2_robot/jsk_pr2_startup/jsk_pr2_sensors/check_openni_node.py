@@ -26,7 +26,7 @@ class image_converter:
         except CvBridgeError, e:
             print e
 
-        rospy.loginfo("sum of pixels is %d at %s", max(cv.Sum(cv_image)), data.header.stamp.secs)
+        #rospy.loginfo("sum of pixels is %d at %s", max(cv.Sum(cv_image)), data.header.stamp.secs)
         if max(cv.Sum(cv_image)) == 0 :
         #if True:
             rospy.logerr("Restart openni_node1")

@@ -1,21 +1,21 @@
 <launch>
   <node pkg="jsk_robot_startup" type="start_launch_sound.py"
-        name="start_launch_sound" />
+        name="start_launch_sound" if="false"/>
   <arg name="launch_openni" default="false" />
   <arg name="launch_move_base" default="true" />
   <arg name="launch_imagesift" default="false" />
   <arg name="launch_facedetection" default="false" />
-  <arg name="launch_sound_play" default="true" />
+  <arg name="launch_sound_play" default="false" />
   <arg name="launch_mjpeg_server" default="false" />
-  <arg name="launch_gripper_sensor" default="true" />
+  <arg name="launch_gripper_sensor" default="false" />
   <arg name="launch_safety_warning" default="true" />
-  <arg name="launch_tablet" default="true" />
-  <arg name="launch_jsk_pcl" default="true" />
-  <arg name="launch_db" default="true" />
-  <arg name="launch_hark" default="true" />
-  <arg name="launch_teleoperation" default="true" />
-  <arg name="launch_people_detection" default="true" />
-  <arg name="slow_camera_framerate" default="true" />
+  <arg name="launch_tablet" default="false" />
+  <arg name="launch_jsk_pcl" default="false" />
+  <arg name="launch_db" default="false" />
+  <arg name="launch_hark" default="false" />
+  <arg name="launch_teleoperation" default="false" />
+  <arg name="launch_people_detection" default="false" />
+  <arg name="slow_camera_framerate" default="false" />
   <arg name="launch_c3_startup" default="false" />
   <arg name="USER_NAME" default="false" />
   <include file="$(find jsk_pr2_startup)/jsk_pr2.machine" />
@@ -48,38 +48,16 @@
     <remap from="robotsound" to="robotsound_jp" />
   </node>
 
-  <!-- start sift on narrow left-->
-  <!-- <group if="$(arg launch_imagesift)" -->
-  <!--        ns="/narrow_stereo/left" > -->
-  <!--   <node machine="c1" name="throttle" pkg="topic_tools" -->
-  <!--         type="throttle" args="messages image_rect 2.0"/> -->
-  <!--   <node machine="c2" name="sift" pkg="imagesift" type="imagesift" -->
-  <!--         args="image:=image_rect_throttle" -->
-  <!--         launch-prefix="nice -n +10"/> -->
-  <!-- </group> -->
-
   <!-- kinect node -->
   <include if="$(arg launch_openni)"
            file="$(find jsk_pr2_startup)/jsk_pr2_sensors/kinect_head.launch" >
     <arg name="launch_openni" value="$(arg launch_openni)" />
   </include>
 
-  <!-- face detection node -->
-  <!-- <node if="$(arg launch_facedetection)" -->
-  <!--       pkg="face_detector" type="face_detector" name="face_detector" -->
-  <!--       args="stereo:=narrow_stereo image:=image_rect" machine="c2" > -->
-  <!--        <param name="classifier_name" type="string" value="frontalface" /> -->
-  <!--        <param name="classifier_filename" type="string" value="$(find opencv2)/opencv/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"/> -->
-  <!--        <param name="classifier_reliability" type="double" value="0.9"/> -->
-  <!--        <param name="do_continuous" type="bool" value="true" /> -->
-  <!--        <param name="do_publish_faces_of_unknown_size" type="bool" value="false" /> -->
-  <!--        <param name="do_display" type="string" value="none" /> -->
-  <!--        <param name="output" type="string" value="none" /> -->
-  <!-- </node> -->
-
   <!-- logging node for PR2  -->
   <include if="$(arg launch_db)"
-           file="$(find jsk_pr2_startup)/jsk_pr2_lifelog/db_client.launch" />
+           file="$(find jsk_pr2_startup)/jsk_pr2_lifelog/db_client.launch">
+  </include>
 
   <!-- pr2 warning -->
   <!-- battery warning -->
@@ -141,5 +119,5 @@
            file="$(find jsk_pr2_startup)/jsk_pr2_sensors/people_detection.launch" />
   <node pkg="jsk_robot_startup" type="finish_launch_sound.py"
         machine="c2"
-        name="finish_launch_sound" />
+        name="finish_launch_sound" if="false"/>
 </launch>
