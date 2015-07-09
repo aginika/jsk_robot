@@ -40,7 +40,7 @@
        <node name="dynamic_tf_publisher" pkg="dynamic_tf_publisher"
        type="tf_publish.py" /> -->
 
-  <include file="$(find jsk_maps)/launch/start_map_$(arg map_frame).launch">
+  <include file="$(find jsk_maps)/launch/start_map_eng2.launch">
     <arg name="MACHINE" value="c2" />
   </include>
 

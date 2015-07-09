@@ -18,7 +18,7 @@
     <arg name="rgb_frame_id" value="/head_mount_kinect_rgb_optical_frame" />
     <arg name="depth_frame_id" value="/head_mount_kinect_ir_optical_frame" />
     <arg name="respawn" value="$(arg respawn)" if="false"/>
-    <arg name="publish_tf" value="false" if="$(arg extra_option)"/>
+    <arg name="publish_tf" value="false"/>
     <arg name="depth_registration" value="true"/>
     <arg name="rgb_processing"                  value="false" if="$(arg extra_option)"/>
     <arg name="ir_processing"                   value="false" if="$(arg extra_option)"/>
@@ -78,14 +78,14 @@
     </node>
   </group>
 
-  <node if="$(arg extra_option)" name="kinect_downsample_for_throttle" pkg="nodelet" type="nodelet"
+  <node name="kinect_downsample" pkg="nodelet" type="nodelet"
         args="load pcl/VoxelGrid /kinect_head_c2/kinect_head_c2_nodelet_manager">
     <remap from="~input" to="/kinect_head_c2/depth_registered/points"/>
     <!-- for 0m-4m -->
     <param name="filter_limit_min" value="0" />
-    <param name="filter_limit_max" value="4" />
+    <param name="filter_limit_max" value="5" />
     <!-- down sample with 2cm voxel -->
-    <param name="leaf_size" value="0.02" />
+    <param name="leaf_size" value="0.04" />
   </node>
 
   <group ns="kinect_head_c2" if="$(arg extra_option)">
