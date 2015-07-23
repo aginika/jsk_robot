@@ -79,8 +79,8 @@
   </group>
 
   <node name="kinect_downsample" pkg="nodelet" type="nodelet"
-        args="load pcl/VoxelGrid /kinect_head_c2/kinect_head_c2_nodelet_manager">
-    <remap from="~input" to="/kinect_head_c2/depth_registered/points"/>
+        args="load pcl/VoxelGrid /kinect_head/kinect_head_nodelet_manager">
+    <remap from="~input" to="/kinect_head/depth_registered/points"/>
     <!-- for 0m-4m -->
     <param name="filter_limit_min" value="0" />
     <param name="filter_limit_max" value="5" />
