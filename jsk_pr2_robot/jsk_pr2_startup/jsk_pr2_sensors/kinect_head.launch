@@ -4,7 +4,7 @@
   <arg name="respawn" default="true" />
   <arg name="launch_c2_startup" default="false" />
   <arg name="extra_option" default="false"/>
-  <arg name="deprecated_relay" default="true" />
+  <arg name="deprecated_relay" default="false" />
   <!-- for ROS_DISTRO under electric -->
   <!-- <include file="$(find jsk_pr2_startup)/jsk_pr2_sensors/openni_node.launch" /> -->
 
