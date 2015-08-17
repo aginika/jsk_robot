@@ -2,6 +2,46 @@
 Changelog for package jsk_pr2_startup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.10 (2015-08-16)
+-------------------
+* [jsk_pr2_startup] logging images/pointclouds/tf/jointstates/people
+* [jsk_pr2_startup] enable logging pr2_gripper_action
+* [jsk_pr2_startup] add pr2 heightmap sample launch
+* [jsk_pr2_startup/package.xml] add missing deps for pr2
+* [jsk_pr2_startup/pr2_gazebo.launch] use relay/republish instead of rgbd_launch for creating rectified images
+* [jsk_pr2_startup/package.xml] add social_navigation_layers to run_depends
+* [jsk_robot_startup] use param "robot/name"
+  [jsk_pr2_startup] use daemon mongod
+* Revert "[jsk_robot] unified database"
+* [jsk_pr2_startup/jsk_pr2.rosinstall] add temporal missing package mongodb_store
+* Contributors: Yuki Furuta, Yuto Inagaki
+
+0.0.9 (2015-08-03)
+------------------
+* [jsk_pr2_startup] add 73b2 sample launch file
+* [jsk_pr2_startup/people_detection.launch] add people tracker
+* [jsk_pr2_startup] add rosinstall for jsk pr2
+* [jsk_robot] use common database jsk_robot_lifelog, with identify with collection name ROBOT_NAME
+* [jsk_pr2_startup/pr2_bringup.launch] use daemon mode mongod for pr2
+* change openni namespace to kinect_head
+* [jsk_pr2_startup/pr2_gazebo.launch] add initial pose of pr2 in gazebo
+* [jsk_pr2_startup] fix typo in pr2.launch
+* Contributors: Yuki Furuta, Yuto Inagaki, Chi Wun Aau, Hitoshi Kamada
+
+0.0.8 (2015-07-16)
+------------------
+* [jsk_pr2_startup] add option map_frame to change eng2/eng8
+* [jsk_pr2_startup/pr2_gazebo.launch] include rgbd_launch to rectify kinect rgb image
+* [jsk_pr2_startup] add pr2_gazebo.launch
+* [jsk_pr2_startup] use env ROBOT for including machine tags
+* [jsk_pr2_startup/jsk_pr2_sensors/kinect_head.launch] add deprecated relay for openni_c2 rgb, depth, depth_registered topics
+* [jsk_pr2_startup] use kinect_head(_c2) instead of openni(_c2) following pr2 default naming
+* [jsk_pr2_startup/jsk_pr2_move_base] fix topic name /base_scan_filtered -> base_scan
+* [jsk_pr2_startup/jsk_pr2_move_base] split name space along with modules; use hydro-based costmap params
+* [jsk_pr2_startup/jsk_pr2_move_base] enable clear params option to move_base_node; increase nice value
+* [jsk_pr2_start_up] set ROBOT=pr2 in rossetpr10XX
+* Contributors: Kentaro Wada, Yuki Furuta
+
 0.0.7 (2015-06-11)
 ------------------
 * solve not updating problem after recharge

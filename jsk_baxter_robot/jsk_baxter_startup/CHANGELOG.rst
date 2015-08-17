@@ -2,6 +2,20 @@
 Changelog for package jsk_baxter_startup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.10 (2015-08-16)
+-------------------
+* Revert "[jsk_robot] unified database"
+* Contributors: Yuki Furuta
+
+0.0.9 (2015-08-03)
+------------------
+* [jsk_robot] use common database jsk_robot_lifelog, with identify with collection name ROBOT_NAME
+* remove old rosmake related files
+* Contributors: Yuki Furuta, Kei Okada
+
+0.0.8 (2015-07-16)
+------------------
+
 0.0.7 (2015-06-11)
 ------------------
 * [jsk_baxter_startup]add mongodb_launch option

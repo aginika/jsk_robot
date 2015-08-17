@@ -2,6 +2,16 @@
 Changelog for package baxtereus
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.10 (2015-08-16)
+-------------------
+
+0.0.9 (2015-08-03)
+------------------
+
+0.0.8 (2015-07-16)
+------------------
+* [package.xml] add roseus pr2eus to baxtereus/package.xml, (https://github.com/start-jsk/2014-semi/issues/816)
+
 0.0.7 (2015-06-11)
 ------------------
 * [baxtereus/test/test-baxter.l] add test code for baxter-interface
