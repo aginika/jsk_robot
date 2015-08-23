@@ -4,13 +4,13 @@
         name="start_launch_sound" />
   <arg name="map_frame" default="eng2" />
   <arg name="launch_openni" default="false" />
-  <arg name="launch_move_base" default="true" />
+  <arg name="launch_move_base" default="false" />
   <arg name="launch_imagesift" default="false" />
   <arg name="launch_facedetection" default="false" />
   <arg name="launch_sound_play" default="false" />
   <arg name="launch_mjpeg_server" default="false" />
   <arg name="launch_gripper_sensor" default="false" />
-  <arg name="launch_safety_warning" default="true" />
+  <arg name="launch_safety_warning" default="false" />
   <arg name="launch_tablet" default="false" />
   <arg name="launch_jsk_pcl" default="false" />
   <arg name="launch_db" default="false" />
@@ -31,7 +31,7 @@
            file="$(find jsk_pr2_startup)/jsk_pr2_move_base/pr2_2dnav.launch" />
 
   <!-- special start: use when launuch_move_base is false-->
-  <group unless="$(arg launch_move_base)" >
+  <group if="$(arg launch_move_base)" >
     <include file="$(find jsk_pr2_startup)/jsk_pr2_move_base/pr2_teleop_general_joystick.launch"/>
     <include file="$(find jsk_pr2_startup)/jsk_pr2_move_base/safe_teleop.xml" />
   </group>
@@ -40,7 +40,7 @@
        <node name="dynamic_tf_publisher" pkg="dynamic_tf_publisher"
        type="tf_publish.py" /> -->
 
-  <include file="$(find jsk_maps)/launch/start_map_eng2.launch">
+  <include file="$(find jsk_maps)/launch/start_map_eng2.launch" if="$(arg launch_move_base)">
     <arg name="MACHINE" value="c2" />
   </include>
 
@@ -66,9 +66,9 @@
   <!-- pr2 warning -->
   <!-- battery warning -->
   <group if="$(arg launch_safety_warning)" >
-  <node name="battery_warning" pkg="roseus"
+  <node name="battery_warning" pkg="roseus" if="$(arg launch_move_base)"
         type="roseus" args="$(find jsk_pr2_startup)/jsk_pr2_warning/battery_warning.l"/>
-  <node name="battery_visualization" pkg="jsk_pr2_startup"
+  <node name="battery_visualization" pkg="jsk_pr2_startup"  if="$(arg launch_move_base)"
         type="battery_visualization.py" />
   </group>
 

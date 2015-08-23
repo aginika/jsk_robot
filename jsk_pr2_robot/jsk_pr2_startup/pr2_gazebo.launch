@@ -3,8 +3,8 @@
   <arg name="gui" default="true" />
   <arg name="paused" default="true" />
   <arg name="world" default="worlds/empty.world" />
-  <arg name="relay" default="true" />
-  <arg name="relay_c2" default="true" />
+  <arg name="relay" default="false" />
+  <arg name="relay_c2" default="false" />
   <arg name="rectify_kinect" default="true" />
   <arg name="num_worker_threads" default="4" />
   <arg name="launch_pr2" default="true" />
@@ -32,88 +32,88 @@
   </group>
 
   <!-- color rectify kinect -->
-  <group if="$(arg rectify_kinect)">
-    <node name="relay_rgb_image_color"
-          pkg="image_transport" type="republish"
-          args="raw">
-      <remap from="in" to="/head_mount_kinect/rgb/image_raw" />
-      <remap from="out" to="/kinect_head/rgb/image_color" />
-    </node>
-    <node name="relay_rgb_image_rect_color"
-          pkg="image_transport" type="republish"
-          args="raw">
-      <remap from="in" to="/head_mount_kinect/rgb/image_raw" />
-      <remap from="out" to="/kinect_head/rgb/image_rect_color" />
-    </node>
-  </group>
+  <!-- <group if="$(arg rectify_kinect)"> -->
+  <!--   <node name="relay_rgb_image_color" -->
+  <!--         pkg="image_transport" type="republish" -->
+  <!--         args="raw"> -->
+  <!--     <remap from="in" to="/head_mount_kinect/rgb/image_raw" /> -->
+  <!--     <remap from="out" to="/kinect_head/rgb/image_color" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_rgb_image_rect_color" -->
+  <!--         pkg="image_transport" type="republish" -->
+  <!--         args="raw"> -->
+  <!--     <remap from="in" to="/head_mount_kinect/rgb/image_raw" /> -->
+  <!--     <remap from="out" to="/kinect_head/rgb/image_rect_color" /> -->
+  <!--   </node> -->
+  <!-- </group> -->
 
   <!-- relay -->
-  <group if="$(arg relay)">
-    <node name="relay_rgb_image_raw"
-          pkg="image_transport" type="republish" args="raw">
-         <remap from="in" to="/head_mount_kinect/rgb/image_raw" />
-         <remap from="out" to="/kinect_head/rgb/image_raw" />
-    </node>
-    <node name="relay_rgb_camera_info"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/rgb/camera_info /kinect_head/rgb/camera_info" />
-    <node name="relay_depth_image_raw"
-          pkg="image_transport" type="republish" args="raw">
-         <remap from="in" to="/head_mount_kinect/depth/image_raw" />
-         <remap from="out" to="/kinect_head/depth/image_raw" />
-    </node>
-    <node name="relay_depth_points"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth/points /kinect_head/depth/points" />
-    <node name="relay_depth_camera_info"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth/camera_info /kinect_head/depth/camera_info" />
-    <node name="relay_depth_registered_points"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth_registered/points /kinect_head/depth_registered/points" />
-    <node name="relay_depth_registered_camera_info"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth_registered/camera_info /kinect_head/depth_registered/camera_info" />
-  </group>
+  <!-- <group if="$(arg relay)"> -->
+  <!--   <node name="relay_rgb_image_raw" -->
+  <!--         pkg="image_transport" type="republish" args="raw"> -->
+  <!--        <remap from="in" to="/head_mount_kinect/rgb/image_raw" /> -->
+  <!--        <remap from="out" to="/kinect_head/rgb/image_raw" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_rgb_camera_info" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/rgb/camera_info /kinect_head/rgb/camera_info" /> -->
+  <!--   <node name="relay_depth_image_raw" -->
+  <!--         pkg="image_transport" type="republish" args="raw"> -->
+  <!--        <remap from="in" to="/head_mount_kinect/depth/image_raw" /> -->
+  <!--        <remap from="out" to="/kinect_head/depth/image_raw" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_depth_points" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth/points /kinect_head/depth/points" /> -->
+  <!--   <node name="relay_depth_camera_info" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth/camera_info /kinect_head/depth/camera_info" /> -->
+  <!--   <node name="relay_depth_registered_points" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth_registered/points /kinect_head/depth_registered/points" /> -->
+  <!--   <node name="relay_depth_registered_camera_info" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth_registered/camera_info /kinect_head/depth_registered/camera_info" /> -->
+  <!-- </group> -->
 
   <!-- relay kinect to c2 -->
-  <group if="$(arg relay_c2)">
-    <node name="relay_c2_rgb_image_raw"
-          pkg="image_transport" type="republish" args="raw">
-      <remap from="in" to="/head_mount_kinect/rgb/image_raw" />
-      <remap from="out" to="/kinect_head_c2/rgb/image_raw" />
-    </node>
-    <node name="relay_c2_rgb_image_color"
-          pkg="image_transport" type="republish" args="raw">
-      <remap from="in" to="/head_mount_kinect/rgb/image_raw" />
-      <remap from="out" to="/kinect_head_c2/rgb/image_color" />
-    </node>
-    <node name="relay_c2_rgb_image_rect_color"
-          pkg="image_transport" type="republish" args="raw">
-      <remap from="in" to="/head_mount_kinect/rgb/image_raw" />
-      <remap from="out" to="/kinect_head_c2/rgb/image_rect_color" />
-    </node>
-    <node name="relay_c2_rgb_camera_info"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/rgb/camera_info /kinect_head_c2/rgb/camera_info" />
-    <node name="relay_c2_depth_image_raw"
-          pkg="image_transport" type="republish" args="raw">
-      <remap from="in" to="/head_mount_kinect/depth/image_raw" />
-      <remap from="out" to="/kinect_head_c2/depth/image_raw" />
-    </node>
-    <node name="relay_c2_depth_points"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth/points /kinect_head_c2/depth/points" />
-    <node name="relay_c2_depth_camera_info"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth/camera_info /kinect_head_c2/depth/camera_info" />
-    <node name="relay_c2_depth_registered_points"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth_registered/points /kinect_head_c2/depth_registered/points" />
-    <node name="relay_c2_depth_registered_camera_info"
-          pkg="topic_tools" type="relay"
-          args="/head_mount_kinect/depth_registered/camera_info /kinect_head_c2/depth_registered/camera_info" />
-  </group>
+  <!-- <group if="$(arg relay_c2)"> -->
+  <!--   <node name="relay_c2_rgb_image_raw" -->
+  <!--         pkg="image_transport" type="republish" args="raw"> -->
+  <!--     <remap from="in" to="/head_mount_kinect/rgb/image_raw" /> -->
+  <!--     <remap from="out" to="/kinect_head_c2/rgb/image_raw" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_c2_rgb_image_color" -->
+  <!--         pkg="image_transport" type="republish" args="raw"> -->
+  <!--     <remap from="in" to="/head_mount_kinect/rgb/image_raw" /> -->
+  <!--     <remap from="out" to="/kinect_head_c2/rgb/image_color" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_c2_rgb_image_rect_color" -->
+  <!--         pkg="image_transport" type="republish" args="raw"> -->
+  <!--     <remap from="in" to="/head_mount_kinect/rgb/image_raw" /> -->
+  <!--     <remap from="out" to="/kinect_head_c2/rgb/image_rect_color" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_c2_rgb_camera_info" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/rgb/camera_info /kinect_head_c2/rgb/camera_info" /> -->
+  <!--   <node name="relay_c2_depth_image_raw" -->
+  <!--         pkg="image_transport" type="republish" args="raw"> -->
+  <!--     <remap from="in" to="/head_mount_kinect/depth/image_raw" /> -->
+  <!--     <remap from="out" to="/kinect_head_c2/depth/image_raw" /> -->
+  <!--   </node> -->
+  <!--   <node name="relay_c2_depth_points" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth/points /kinect_head_c2/depth/points" /> -->
+  <!--   <node name="relay_c2_depth_camera_info" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth/camera_info /kinect_head_c2/depth/camera_info" /> -->
+  <!--   <node name="relay_c2_depth_registered_points" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth_registered/points /kinect_head_c2/depth_registered/points" /> -->
+  <!--   <node name="relay_c2_depth_registered_camera_info" -->
+  <!--         pkg="topic_tools" type="relay" -->
+  <!--         args="/head_mount_kinect/depth_registered/camera_info /kinect_head_c2/depth_registered/camera_info" /> -->
+  <!-- </group> -->
 
 
   <!-- pr2.launch -->
@@ -121,6 +121,7 @@
            if="$(arg launch_pr2)">
     <arg name="map_frame" value="$(arg map_frame)" />
     <arg name="launch_openni" value="false" />
+    <arg name="launch_move_base" value="false" />
     <arg name="launch_db" value="false" />
     <arg name="launch_hark" value="false" />
     <arg name="launch_teleoperation" value="false" />
